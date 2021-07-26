@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { FC, FormEvent, useRef } from 'react';
+import React, { FC, FormEvent, useContext, useRef } from 'react';
 
+import { TodosContext } from '../store/todo-context';
 import classes from './NewTodo.module.css';
 
-const NewTodo: FC<{ onAddTodo: (enteredText: string) => void }> = (props) => {
+const NewTodo: FC = () => {
+  const { addTodo } = useContext(TodosContext);
   const todoTextInputRef = useRef<HTMLInputElement>(null);
 
   const submitHandler = (event: FormEvent) => {
@@ -16,7 +18,7 @@ const NewTodo: FC<{ onAddTodo: (enteredText: string) => void }> = (props) => {
       return;
     }
 
-    props.onAddTodo(enteredText);
+    addTodo(enteredText);
   };
 
   return (
