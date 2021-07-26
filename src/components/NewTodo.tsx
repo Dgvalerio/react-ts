@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { FC, FormEvent, useRef } from 'react';
 
+import classes from './NewTodo.module.css';
+
 const NewTodo: FC<{ onAddTodo: (enteredText: string) => void }> = (props) => {
   const todoTextInputRef = useRef<HTMLInputElement>(null);
 
@@ -18,7 +20,7 @@ const NewTodo: FC<{ onAddTodo: (enteredText: string) => void }> = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={classes.form}>
       <label htmlFor="text">Todo text</label>
       <input id="text" type="text" ref={todoTextInputRef} />
       <button type="submit">Add Todo</button>
