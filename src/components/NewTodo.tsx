@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { FC, FormEvent, useRef } from 'react';
 
-const NewTodo: FC = () => {
+const NewTodo: FC<{ onAddTodo: (enteredText: string) => void }> = (props) => {
   const todoTextInputRef = useRef<HTMLInputElement>(null);
 
   const submitHandler = (event: FormEvent) => {
@@ -11,7 +11,10 @@ const NewTodo: FC = () => {
 
     if (enteredText.trim().length === 0) {
       // throw an error
+      return;
     }
+
+    props.onAddTodo(enteredText);
   };
 
   return (
